@@ -25,7 +25,7 @@ public class Estoque {
             throw new IllegalArgumentException("Produto já cadastrado.");
         }
 
-        estoque.put(p.getNome(), p);
+        estoque.put(p.getNome().toUpperCase(), p);
     }
 
     public void comprarProduto(String p, int qtd){
@@ -45,19 +45,23 @@ public class Estoque {
 
         }
 
-        estoque.compute(estoque.get(p).getNome(), (chave, atualP) -> {
-            if(atualP == null) return null;
+        estoque.compute(atual.getNome(), (chave, key) -> {
+            if(key == null) return null;
 
             int novaQtd = atual.getQtd() - qtd;
-            atualP.setQtd(novaQtd);
+            key.setQtd(novaQtd);
 
-            return novaQtd == 0? null : atualP;
+            return novaQtd == 0? null : key;
         });
 
     }
 
-    public void excluirProduto(){
+    public void excluirProduto(String p){
+        if(!estoque.containsKey(p)){
+            throw new IllegalArgumentException("Produto não encontrado no estoque.");
+        }
 
+        estoque.remove(p.toUpperCase());
     }
 
 }
