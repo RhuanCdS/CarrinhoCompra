@@ -24,4 +24,8 @@ public class Produto {
         return qtd;
     }
 
+    public void setQtd(int qtd){
+        this.qtd -= qtd;
+    }
+
 }
