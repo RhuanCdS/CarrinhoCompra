@@ -1,4 +1,4 @@
-package Base;
+package Base.Loja;
 
 public class Produto {
 
