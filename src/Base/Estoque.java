@@ -28,33 +28,31 @@ public class Estoque {
         estoque.put(p.getNome(), p);
     }
 
-    public void comprarProduto(Produto p, int qtd){
+    public void comprarProduto(String p, int qtd){
 
-        if(!estoque.containsKey(p.getNome())){
+        if(!estoque.containsKey(p)){
             throw new IllegalArgumentException("Produto não encontrado no estoque.");
         }
 
-        int qtdAtualProduto = p.getQtd();
+        Produto atual = estoque.get(p);
 
-        if(qtdAtualProduto < qtd){
+        if(atual.getQtd() < qtd){
 
             throw new IllegalArgumentException(
-                    "Quantidade indisponível. Temos apenas " + p.getQtd() +
-                    "unidades de " + p.getNome() + " em estoque."
+                    "Quantidade indisponível. Temos apenas " + atual.getQtd() +
+                    " unidades de " + atual.getNome() + " em estoque."
             );
 
-        }else{
-
-            estoque.compute(p.getNome(), (chave, atualP) -> {
-                if(atualP == null) return null;
-
-                int novaQtd = atualP.getQtd() - qtd;
-                atualP.setQtd(novaQtd);
-
-                return novaQtd == 0? null : atualP;
-            });
-
         }
+
+        estoque.compute(estoque.get(p).getNome(), (chave, atualP) -> {
+            if(atualP == null) return null;
+
+            int novaQtd = atual.getQtd() - qtd;
+            atualP.setQtd(novaQtd);
+
+            return novaQtd == 0? null : atualP;
+        });
 
     }
 
