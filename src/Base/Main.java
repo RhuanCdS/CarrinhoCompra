@@ -74,6 +74,8 @@ public class Main{
 
         System.out.printf("\n===============================\n");
 
+        e.listarProdutos();
+
         jp.removerProdutoCarrinho("arroz");
         jp.verificarCarrinho();
 

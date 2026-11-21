@@ -103,7 +103,7 @@ public class Estoque {
 
     public void listarProdutos(){
         estoque.forEach((k, v) -> {
-            System.out.println("Nome: " + estoque.get(k).getNome());
+            System.out.println("\nNome: " + estoque.get(k).getNome());
             System.out.println("Quantidade: " + estoque.get(k).getQtd());
         });
     }
