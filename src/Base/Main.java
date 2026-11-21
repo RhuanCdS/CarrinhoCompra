@@ -63,7 +63,7 @@ public class Main{
         e.adicionarProduto(refrigerante);
 
         e.listarProdutos();
-        System.out.printf("\n===============================\n");
+        System.out.printf("");
 
         Cliente jp = new Cliente("jp", 15);
         jp.adicionarProdutoCarrinho("café", 3);
