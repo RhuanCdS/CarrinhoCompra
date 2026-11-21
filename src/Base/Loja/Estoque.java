@@ -3,6 +3,7 @@ package Base.Loja;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import Base.Cliente.Carrinho.ItemCarrinho;
 import Base.Loja.ClasseAnonima.VerificacaoEstoque;
 
 public class Estoque {
@@ -25,14 +26,14 @@ public class Estoque {
 
     public void adicionarProduto(Produto p){
 
-        if(estoque.containsKey(p.getNome())){
+        if(estoque.containsKey(p.getNome().toUpperCase())){
             throw new IllegalArgumentException("Produto já cadastrado.");
         }
 
         estoque.put(p.getNome().toUpperCase(), p);
     }
 
-    public void comprarProduto(String p, int qtd){
+    public ItemCarrinho comprarProduto(String p, int qtd){
 
         if(!estoque.containsKey(p.toUpperCase())){
             throw new IllegalArgumentException("Produto não encontrado no estoque.");
@@ -49,19 +50,35 @@ public class Estoque {
 
         }
 
-        estoque.compute(atual.getNome(), (chave, key) -> {
-            if(key == null) return null;
+        estoque.compute(atual.getNome().toUpperCase(), (chave, atualP) -> {
+            if (atualP == null) return null;
 
-            int novaQtd = atual.getQtd() - qtd;
-            key.setQtd(novaQtd);
+            int novaQtd = atualP.getQtd() - qtd;
+            atualP.setQtd(novaQtd);
 
-            return novaQtd == 0? null : key;
+            return novaQtd == 0 ? null : atualP;
         });
 
+        return new ItemCarrinho(atual.getNome(), atual.getPreco(), qtd);
+    }
+
+    public void retornarProduto(ItemCarrinho item){
+
+        estoque.compute(item.getNome().toUpperCase(), (chave, atualP) -> {
+
+            if (atualP == null){
+                return new Produto(item.getNome(), item.getPreco(), item.getQtd());
+            }
+
+            int novaQtd = atualP.getQtd() + item.getQtd();
+            atualP.setQtd(novaQtd);
+
+            return atualP;
+        });
     }
 
     public void excluirProduto(String p){
-        if(!estoque.containsKey(p)){
+        if(!estoque.containsKey(p.toUpperCase())){
             throw new IllegalArgumentException("Produto não encontrado no estoque.");
         }
 
@@ -81,6 +98,13 @@ public class Estoque {
                 }
             }
 
+        });
+    }
+
+    public void listarProdutos(){
+        estoque.forEach((k, v) -> {
+            System.out.println("Nome: " + estoque.get(k).getNome());
+            System.out.println("Quantidade: " + estoque.get(k).getQtd());
         });
     }
 
