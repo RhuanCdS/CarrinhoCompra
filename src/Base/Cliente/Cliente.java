@@ -38,4 +38,8 @@ public class Cliente {
     public void verificarCarrinho(){
         carrinhoCompra.verificarCarrinho();
     }
+
+    public void verificarProdutos(){
+
+    }
 }
