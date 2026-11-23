@@ -26,36 +26,16 @@ public class CriandoProdutos {
                 }
             });
 
-
-            Produto arroz = new Produto("Arroz", 10.98, 25);
-            e.adicionarProduto(arroz);
-
-            Produto bala = new Produto("bala halls", 2.50, 15);
-            e.adicionarProduto(bala);
-
-            Produto suco = new Produto("suco", 8.50, 50);
-            e.adicionarProduto(suco);
-
-            Produto feijao = new Produto("Feijão", 7.90, 20);
-            e.adicionarProduto(feijao);
-
-            Produto macarrao = new Produto("Macarrão", 4.50, 30);
-            e.adicionarProduto(macarrao);
-
-            Produto oleo = new Produto("Óleo", 6.80, 12);
-            e.adicionarProduto(oleo);
-
-            Produto cafe = new Produto("Café", 12.90, 8);
-            e.adicionarProduto(cafe);
-
-            Produto leite = new Produto("Leite", 5.20, 40);
-            e.adicionarProduto(leite);
-
-            Produto biscoito = new Produto("Biscoito", 3.75, 25);
-            e.adicionarProduto(biscoito);
-
-            Produto refrigerante = new Produto("Refrigerante", 7.50, 18);
-            e.adicionarProduto(refrigerante);
+            e.adicionarProduto(new Produto("Arroz", 10.98, 25));
+            e.adicionarProduto(new Produto("bala halls", 2.50, 15));
+            e.adicionarProduto(new Produto("suco", 8.50, 50));
+            e.adicionarProduto(new Produto("Feijão", 7.90, 20));
+            e.adicionarProduto(new Produto("Macarrão", 4.50, 30));
+            e.adicionarProduto(new Produto("Óleo", 6.80, 12));
+            e.adicionarProduto(new Produto("Café", 12.90, 8));
+            e.adicionarProduto(new Produto("Leite", 5.20, 40));
+            e.adicionarProduto(new Produto("Biscoito", 3.75, 25));
+            e.adicionarProduto(new Produto("Refrigerante", 7.50, 18));
 
         }
 }
