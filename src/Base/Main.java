@@ -2,6 +2,7 @@ package Base;
 
 import Base.Cliente.Cliente;
 import Base.Loja.CriandoProdutos;
+import Base.Loja.Estoque;
 
 public class Main{
 

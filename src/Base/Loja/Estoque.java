@@ -89,7 +89,7 @@ public class Estoque {
         verificacaoEstoques.add(v);
     }
 
-    public void varificandoProdutos(){
+    public  void varificandoProdutos(){
 
         estoque.forEach((k, v) -> {
             if(v.getQtd() < 3){

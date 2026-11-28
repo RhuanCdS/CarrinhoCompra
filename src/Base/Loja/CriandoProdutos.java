@@ -7,15 +7,13 @@ public class CriandoProdutos {
         public static void montarEstoque() {
             Estoque e = Estoque.criarEstoque();
 
-            //adicionando as verificações nos produtos usando classes anônimas
-            e.adicionarVerificacao(new VerificacaoEstoque() {
-                @Override
-                public void verificarProdutos(Produto p) {
-                    System.out.println("Produto " + p.getNome() + " com quantidade baixa. Adicione mais estoque!!!");
-                    System.out.println("Qtd: " + p.getQtd());
-                }
+            //adicionando as verificações nos produtos usando lambda
+            e.adicionarVerificacao(str -> {
+                System.out.println("Produto " + str.getNome() + " com quantidade baixa. Adicione mais estoque!!!");
+                System.out.println("Qtd: " + str.getQtd());
             });
 
+            //adicionando as verificações nos produtos usando classes anônimas
             e.adicionarVerificacao(new VerificacaoEstoque() {
                 private int totalAviso = 0;
 
